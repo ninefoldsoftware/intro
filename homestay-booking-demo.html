@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ninefold Homestay — Book Your Stay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#1F3D2E;
+    --forest-deep:#142A1F;
+    --terracotta:#C1653A;
+    --terracotta-deep:#A04E2A;
+    --cream:#FAF6EF;
+    --white:#FFFFFF;
+    --ink:#2A2620;
+    --ink-dim:#6B6459;
+    --border:#E8E0D2;
+    --serif:'Playfair Display', Georgia, serif;
+    --sans:'Work Sans', -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--cream); color:var(--ink); font-family:var(--sans); line-height:1.65; -webkit-font-smoothing:antialiased;}
+  a{color:var(--forest); text-decoration:none;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+
+  nav{position:sticky; top:0; z-index:50; background:rgba(250,246,239,0.95); backdrop-filter:blur(6px); border-bottom:1px solid var(--border);}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 28px;}
+  .logo{font-family:var(--serif); font-weight:700; font-size:21px; color:var(--forest);}
+  .nav-links{display:flex; align-items:center; gap:26px; list-style:none; font-size:14.5px;}
+  .nav-links a{color:var(--ink-dim); font-weight:500;}
+  .nav-links a:hover{color:var(--forest);}
+  .nav-cta{background:var(--terracotta); color:var(--white)!important; padding:10px 20px; border-radius:6px; font-weight:600; font-size:14px;}
+  .nav-cta:hover{background:var(--terracotta-deep); text-decoration:none;}
+
+  /* HERO */
+  .hero{position:relative; background:var(--forest); color:var(--white); padding:80px 0 0; overflow:hidden;}
+  .hero-inner{text-align:center; padding-bottom:64px;}
+  .eyebrow{font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#D9C9A8; margin-bottom:16px;}
+  .hero h1{font-family:var(--serif); font-size:clamp(32px,5vw,52px); font-weight:600; line-height:1.2; margin-bottom:16px;}
+  .hero p{font-size:16.5px; color:rgba(255,255,255,0.78); max-width:50ch; margin:0 auto 8px;}
+  .hero-visual{background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.14); border-radius:14px; aspect-ratio:16/6; display:flex; align-items:center; justify-content:center; font-size:52px; margin-top:32px;}
+
+  /* BOOKING WIDGET */
+  .booking-widget{
+    background:var(--white); border-radius:14px; box-shadow:0 20px 50px -18px rgba(20,42,31,0.35);
+    padding:22px 26px; display:grid; grid-template-columns:1fr 1fr 1fr auto; gap:16px; align-items:end;
+    margin-top:-38px; position:relative; z-index:5;
+  }
+  .field{display:flex; flex-direction:column; gap:6px;}
+  .field label{font-size:11.5px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-dim);}
+  .field input, .field select{border:1px solid var(--border); border-radius:7px; padding:11px 12px; font-family:var(--sans); font-size:14px; color:var(--ink); background:var(--cream);}
+  .field input:focus, .field select:focus{outline:2px solid var(--terracotta);}
+  .search-btn{background:var(--terracotta); color:var(--white); font-weight:700; font-size:14.5px; border:none; border-radius:8px; padding:13px 26px; cursor:pointer; white-space:nowrap;}
+  .search-btn:hover{background:var(--terracotta-deep);}
+
+  section{padding:80px 0 64px;}
+  .section-eyebrow{font-size:13px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--terracotta-deep); margin-bottom:10px;}
+  .section-head h2{font-family:var(--serif); font-size:30px; font-weight:600; color:var(--forest); margin-bottom:14px;}
+  .section-head p{color:var(--ink-dim); max-width:58ch; margin-bottom:38px;}
+
+  /* ROOMS */
+  .rooms{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .room-card{background:var(--white); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:transform 0.15s ease;}
+  .room-card:hover{transform:translateY(-3px);}
+  .room-img{background:var(--forest); opacity:0.9; aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; font-size:38px; color:var(--white);}
+  .room-body{padding:20px;}
+  .room-body h3{font-family:var(--serif); font-size:18px; color:var(--forest); margin-bottom:6px;}
+  .room-body p{font-size:13.5px; color:var(--ink-dim); margin-bottom:14px;}
+  .room-price{display:flex; align-items:baseline; justify-content:space-between;}
+  .price{font-family:var(--serif); font-weight:700; font-size:20px; color:var(--terracotta-deep);}
+  .price span{font-size:12px; font-weight:400; color:var(--ink-dim); font-family:var(--sans);}
+  .room-link{font-size:13px; font-weight:600; color:var(--forest);}
+
+  /* AMENITIES */
+  .amenities{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; text-align:center;}
+  .amenity-icon{font-size:28px; margin-bottom:10px;}
+  .amenity h4{font-size:14px; color:var(--ink);}
+
+  /* GALLERY */
+  .gallery{display:grid; grid-template-columns:repeat(4,1fr); gap:12px;}
+  .gallery-item{background:var(--forest); opacity:0.85; aspect-ratio:1; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:26px; color:var(--white);}
+
+  /* REVIEWS */
+  .reviews{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .review-card{background:var(--white); border:1px solid var(--border); border-radius:12px; padding:22px;}
+  .stars{color:var(--terracotta); font-size:14px; margin-bottom:10px;}
+  .review-card p{font-size:14px; color:var(--ink-dim); font-style:italic; margin-bottom:14px;}
+  .review-who{font-size:13px; font-weight:700; color:var(--forest);}
+
+  /* CTA */
+  .book-cta{background:var(--terracotta); border-radius:16px; padding:44px; text-align:center; color:var(--white);}
+  .book-cta h2{font-family:var(--serif); font-size:28px; margin-bottom:12px;}
+  .book-cta p{opacity:0.92; margin-bottom:24px; max-width:50ch; margin-left:auto; margin-right:auto;}
+  .book-cta .btn-primary{background:var(--white); color:var(--terracotta-deep); font-weight:700; padding:13px 26px; border-radius:8px; display:inline-block;}
+  .book-cta .btn-primary:hover{background:var(--cream); text-decoration:none;}
+
+  footer{background:var(--forest-deep); color:rgba(255,255,255,0.7); padding:36px 0; font-size:13px; text-align:center;}
+  footer .credit{margin-top:8px; opacity:0.6;}
+  footer a{color:rgba(255,255,255,0.9);}
+
+  @media (max-width:820px){
+    .booking-widget{grid-template-columns:1fr 1fr; margin-top:20px;}
+    .rooms{grid-template-columns:1fr;}
+    .amenities{grid-template-columns:repeat(2,1fr);}
+    .gallery{grid-template-columns:repeat(2,1fr);}
+    .reviews{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Ninefold Homestay</div>
+    <ul class="nav-links">
+      <li><a href="#rooms">Rooms</a></li>
+      <li><a href="#amenities">Amenities</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#book" class="nav-cta">Book Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="eyebrow">Riverside, Dooars</div>
+    <h1>A quiet stay, close to everything worth seeing</h1>
+    <p>Four cottage rooms, home-cooked meals, and a view of the river from every window.</p>
+    <div class="hero-visual">🏡</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="booking-widget">
+    <div class="field">
+      <label>Check-in</label>
+      <input type="date">
+    </div>
+    <div class="field">
+      <label>Check-out</label>
+      <input type="date">
+    </div>
+    <div class="field">
+      <label>Guests</label>
+      <select>
+        <option>1 Guest</option>
+        <option>2 Guests</option>
+        <option>3 Guests</option>
+        <option>4+ Guests</option>
+      </select>
+    </div>
+    <button class="search-btn">Check Availability</button>
+  </div>
+</div>
+
+<section id="rooms">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Stays</div>
+      <h2>Rooms &amp; cottages</h2>
+      <p>Each room is independently cottage-style, with a private sit-out facing the river.</p>
+    </div>
+    <div class="rooms">
+      <div class="room-card">
+        <div class="room-img">🛏️</div>
+        <div class="room-body">
+          <h3>River View Cottage</h3>
+          <p>Private sit-out, queen bed, attached bath.</p>
+          <div class="room-price"><span class="price">₹2,800 <span>/ night</span></span><a class="room-link" href="#book">Book →</a></div>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img">🛖</div>
+        <div class="room-body">
+          <h3>Family Suite</h3>
+          <p>Two rooms, shared living space, sleeps 4.</p>
+          <div class="room-price"><span class="price">₹4,200 <span>/ night</span></span><a class="room-link" href="#book">Book →</a></div>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img">🌿</div>
+        <div class="room-body">
+          <h3>Garden Room</h3>
+          <p>Ground floor, opens directly onto the garden.</p>
+          <div class="room-price"><span class="price">₹2,200 <span>/ night</span></span><a class="room-link" href="#book">Book →</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="amenities" style="background:var(--white);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Amenities</div>
+      <h2>What's included</h2>
+    </div>
+    <div class="amenities">
+      <div class="amenity"><div class="amenity-icon">🍽️</div><h4>Home-cooked meals</h4></div>
+      <div class="amenity"><div class="amenity-icon">📶</div><h4>Free Wi-Fi</h4></div>
+      <div class="amenity"><div class="amenity-icon">🚗</div><h4>Free parking</h4></div>
+      <div class="amenity"><div class="amenity-icon">🔥</div><h4>Evening bonfire</h4></div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Gallery</div>
+      <h2>A look around</h2>
+    </div>
+    <div class="gallery">
+      <div class="gallery-item">🌄</div>
+      <div class="gallery-item">🛋️</div>
+      <div class="gallery-item">🍲</div>
+      <div class="gallery-item">🌳</div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--white);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Reviews</div>
+      <h2>What guests say</h2>
+    </div>
+    <div class="reviews">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"Peaceful, clean, and the meals were better than most restaurants nearby."</p>
+        <div class="review-who">— Ananya, Kolkata</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"Host picked us up from the station and made the whole trip easy. Would book again."</p>
+        <div class="review-who">— Rohit, Siliguri</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★☆</div>
+        <p>"Exactly as pictured — river view room was worth the small extra cost."</p>
+        <div class="review-who">— Priya, Bangalore</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="book">
+  <div class="wrap">
+    <div class="book-cta">
+      <h2>Ready to book your stay?</h2>
+      <p>Message us directly for the best rate — no booking platform commission included.</p>
+      <a class="btn-primary" href="#">Check Availability</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>Ninefold Homestay — Dooars, West Bengal</div>
+    <div class="credit">Demo site built by <a href="#">Ninefold</a> — this is a sample, not a real property.</div>
+  </div>
+</footer>
+
+</body>
+</html>

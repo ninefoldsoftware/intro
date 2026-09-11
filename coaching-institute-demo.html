@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zenith Academy — Coaching for JEE, NEET &amp; Boards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#132A4C;
+    --navy-deep:#0B1B33;
+    --white:#FFFFFF;
+    --paper:#F5F7FA;
+    --ink:#1B2432;
+    --ink-dim:#5C6878;
+    --gold:#D4A44C;
+    --gold-deep:#B8862F;
+    --border:#E3E7EE;
+    --heading:'Poppins', sans-serif;
+    --sans:'Inter', -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--white); color:var(--ink); font-family:var(--sans); line-height:1.65; -webkit-font-smoothing:antialiased;}
+  a{color:var(--navy); text-decoration:none;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  nav{position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.96); backdrop-filter:blur(6px); border-bottom:1px solid var(--border);}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 28px;}
+  .logo{font-family:var(--heading); font-weight:700; font-size:20px; color:var(--navy);}
+  .logo span{color:var(--gold-deep);}
+  .nav-links{display:flex; align-items:center; gap:26px; list-style:none; font-size:14.5px;}
+  .nav-links a{color:var(--ink-dim); font-weight:500;}
+  .nav-links a:hover{color:var(--navy);}
+  .nav-cta{background:var(--gold); color:var(--navy-deep)!important; padding:10px 20px; border-radius:6px; font-weight:700; font-size:14px;}
+  .nav-cta:hover{background:var(--gold-deep); color:var(--white)!important;}
+
+  /* HERO */
+  .hero{background:var(--navy); color:var(--white); padding:76px 0 0;}
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center; padding-bottom:56px;}
+  .eyebrow{font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:16px;}
+  .hero h1{font-family:var(--heading); font-size:clamp(30px,4.2vw,44px); font-weight:700; line-height:1.2; margin-bottom:18px;}
+  .hero p{font-size:16px; color:rgba(255,255,255,0.78); max-width:46ch; margin-bottom:28px;}
+  .hero-cta{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{display:inline-block; font-weight:700; font-size:14.5px; padding:13px 24px; border-radius:7px; border:1.5px solid transparent; cursor:pointer;}
+  .btn-primary{background:var(--gold); color:var(--navy-deep);}
+  .btn-primary:hover{background:var(--gold-deep); color:var(--white);}
+  .btn-outline{border-color:rgba(255,255,255,0.4); color:var(--white); background:transparent;}
+  .btn-outline:hover{background:rgba(255,255,255,0.08); text-decoration:none;}
+
+  .hero-visual{background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:16px; aspect-ratio:4/3.2; display:flex; align-items:center; justify-content:center; font-size:56px;}
+
+  /* STATS STRIP */
+  .stats-strip{background:var(--gold);}
+  .stats-strip .wrap{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; padding:26px 28px;}
+  .stat{text-align:center;}
+  .stat-num{font-family:var(--heading); font-weight:800; font-size:28px; color:var(--navy-deep);}
+  .stat-label{font-size:12.5px; font-weight:600; color:var(--navy-deep); opacity:0.85; text-transform:uppercase; letter-spacing:0.03em;}
+
+  /* SECTIONS */
+  section{padding:64px 0;}
+  .section-eyebrow{font-size:13px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold-deep); margin-bottom:10px;}
+  .section-head h2{font-family:var(--heading); font-size:28px; font-weight:700; color:var(--navy); margin-bottom:14px;}
+  .section-head p{color:var(--ink-dim); max-width:58ch; margin-bottom:38px;}
+
+  /* COURSES */
+  .courses{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .course-card{background:var(--paper); border:1px solid var(--border); border-radius:12px; padding:26px; transition:border-color 0.15s ease;}
+  .course-card:hover{border-color:var(--gold);}
+  .course-tag{display:inline-block; font-size:11.5px; font-weight:700; letter-spacing:0.04em; color:var(--gold-deep); background:rgba(212,164,76,0.14); padding:4px 10px; border-radius:20px; margin-bottom:14px;}
+  .course-card h3{font-family:var(--heading); font-size:18px; margin-bottom:8px; color:var(--navy);}
+  .course-card p{font-size:14px; color:var(--ink-dim);}
+
+  /* FACULTY */
+  .faculty-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .faculty-card{text-align:center;}
+  .faculty-photo{background:var(--paper); border:1px solid var(--border); border-radius:50%; width:88px; height:88px; display:flex; align-items:center; justify-content:center; font-size:34px; margin:0 auto 14px;}
+  .faculty-card h4{font-size:15.5px; color:var(--navy); margin-bottom:2px;}
+  .faculty-card .subject{font-size:12.5px; color:var(--gold-deep); font-weight:600;}
+
+  /* TESTIMONIALS */
+  .testimonials{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
+  .testimonial{background:var(--navy); color:var(--white); border-radius:12px; padding:26px;}
+  .testimonial p{font-size:14.5px; color:rgba(255,255,255,0.85); margin-bottom:16px; font-style:italic;}
+  .testimonial .who{font-size:13px; font-weight:700; color:var(--gold);}
+
+  /* CTA */
+  .enroll-cta{background:var(--paper); border:1px solid var(--border); border-radius:16px; padding:44px; text-align:center;}
+  .enroll-cta h2{font-family:var(--heading); font-size:26px; color:var(--navy); margin-bottom:12px;}
+  .enroll-cta p{color:var(--ink-dim); margin-bottom:24px; max-width:50ch; margin-left:auto; margin-right:auto;}
+
+  footer{background:var(--navy-deep); color:rgba(255,255,255,0.7); padding:36px 0; font-size:13px; text-align:center;}
+  footer .credit{margin-top:8px; opacity:0.6;}
+  footer a{color:rgba(255,255,255,0.9);}
+
+  @media (max-width:800px){
+    .hero-grid{grid-template-columns:1fr;}
+    .stats-strip .wrap{grid-template-columns:repeat(2,1fr);}
+    .courses{grid-template-columns:1fr;}
+    .faculty-grid{grid-template-columns:1fr;}
+    .testimonials{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Ninefold <span>Tuitions</span></div>
+    <ul class="nav-links">
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#faculty">Faculty</a></li>
+      <li><a href="#enroll" class="nav-cta">Enroll Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">JEE · NEET · Board Exams</div>
+      <h1>Results come from the right guidance, not just more hours</h1>
+      <p>Small batch sizes, doubt-clearing that actually happens, and faculty who track your progress — not just your attendance.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#enroll">Book a Free Demo Class</a>
+        <a class="btn btn-outline" href="#courses">View Courses</a>
+      </div>
+    </div>
+    <div class="hero-visual">🎓</div>
+  </div>
+  <div class="stats-strip">
+    <div class="wrap">
+      <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Years Teaching</div></div>
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Students Guided</div></div>
+      <div class="stat"><div class="stat-num">92%</div><div class="stat-label">Result Improvement</div></div>
+      <div class="stat"><div class="stat-num">15</div><div class="stat-label">Max Batch Size</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="courses">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Courses</div>
+      <h2>Batches we run</h2>
+      <p>Foundation to advanced, across the exams that actually matter for admissions.</p>
+    </div>
+    <div class="courses">
+      <div class="course-card">
+        <span class="course-tag">Class 11–12</span>
+        <h3>JEE Main &amp; Advanced</h3>
+        <p>Physics, Chemistry, Maths — full syllabus coverage with weekly mock tests.</p>
+      </div>
+      <div class="course-card">
+        <span class="course-tag">Class 11–12</span>
+        <h3>NEET Preparation</h3>
+        <p>Biology-focused batch with integrated Physics &amp; Chemistry practice sets.</p>
+      </div>
+      <div class="course-card">
+        <span class="course-tag">Class 9–10</span>
+        <h3>Board Exam Foundation</h3>
+        <p>Concept-first teaching for ICSE/CBSE boards, with regular chapter tests.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="results" style="background:var(--paper);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Why Students Choose Us</div>
+      <h2>What parents actually notice</h2>
+    </div>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p>"My son's attendance was never the problem — understanding was. Here, the doubt sessions actually happen, every week."</p>
+        <div class="who">— Parent, Class 12 student</div>
+      </div>
+      <div class="testimonial">
+        <p>"Small batch meant the teacher actually knew where each student was struggling, instead of just moving through the syllabus."</p>
+        <div class="who">— Parent, Class 10 student</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faculty">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Faculty</div>
+      <h2>Who's teaching</h2>
+    </div>
+    <div class="faculty-grid">
+      <div class="faculty-card">
+        <div class="faculty-photo">👨‍🏫</div>
+        <h4>[Faculty Name]</h4>
+        <div class="subject">Physics &amp; Maths</div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-photo">👩‍🏫</div>
+        <h4>[Faculty Name]</h4>
+        <div class="subject">Chemistry &amp; Biology</div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-photo">👨‍🏫</div>
+        <h4>[Faculty Name]</h4>
+        <div class="subject">English &amp; Foundation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="enroll">
+  <div class="wrap">
+    <div class="enroll-cta">
+      <h2>Book a free demo class</h2>
+      <p>Sit in on an actual class before enrolling — no commitment, no pressure.</p>
+      <a class="btn btn-primary" href="#">Book Free Demo</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>Ninefold Tuitions — Kolkata</div>
+    <div class="credit">Demo site built by <a href="#">Ninefold</a> — this is a sample, not a real institute.</div>
+  </div>
+</footer>
+
+</body>
+</html>

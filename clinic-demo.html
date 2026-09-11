@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wellspring Family Clinic — Book an Appointment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF8F4;
+    --white:#FFFFFF;
+    --ink:#1F2A2E;
+    --ink-dim:#5B6B6E;
+    --teal:#1D7874;
+    --teal-deep:#12524F;
+    --sage:#DCE8DF;
+    --coral:#E8783D;
+    --border:#E6E0D6;
+    --serif:'Fraunces', Georgia, serif;
+    --sans:'Inter', -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--cream); color:var(--ink); font-family:var(--sans); line-height:1.65; -webkit-font-smoothing:antialiased;}
+  a{color:var(--teal); text-decoration:none;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  nav{position:sticky; top:0; z-index:50; background:rgba(250,248,244,0.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--border);}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 28px;}
+  .logo{font-family:var(--serif); font-weight:600; font-size:20px; color:var(--teal-deep);}
+  .nav-links{display:flex; align-items:center; gap:28px; list-style:none; font-size:14.5px;}
+  .nav-links a{color:var(--ink-dim); font-weight:500;}
+  .nav-links a:hover{color:var(--teal);}
+  .nav-cta{background:var(--teal); color:var(--white)!important; padding:10px 18px; border-radius:6px; font-weight:600; font-size:14px;}
+  .nav-cta:hover{background:var(--teal-deep); text-decoration:none;}
+
+  /* HERO */
+  .hero{padding:72px 0 64px;}
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;}
+  .eyebrow{font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--coral); margin-bottom:14px;}
+  .hero h1{font-family:var(--serif); font-size:clamp(32px,4.5vw,48px); font-weight:600; line-height:1.15; color:var(--teal-deep); margin-bottom:18px;}
+  .hero p{font-size:16.5px; color:var(--ink-dim); max-width:46ch; margin-bottom:28px;}
+  .hero-cta{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{display:inline-block; font-weight:600; font-size:14.5px; padding:13px 24px; border-radius:7px; border:1.5px solid transparent; cursor:pointer;}
+  .btn-primary{background:var(--teal); color:var(--white);}
+  .btn-primary:hover{background:var(--teal-deep);}
+  .btn-outline{border-color:var(--teal); color:var(--teal); background:transparent;}
+  .btn-outline:hover{background:var(--sage); text-decoration:none;}
+
+  .hero-visual{background:var(--sage); border-radius:16px; aspect-ratio:4/3.4; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;}
+  .hero-visual::before{content:"🩺"; font-size:64px; opacity:0.55;}
+  .hero-badge{position:absolute; bottom:20px; left:20px; background:var(--white); padding:12px 16px; border-radius:10px; box-shadow:0 8px 24px rgba(18,82,79,0.12); font-size:13px; font-weight:600; color:var(--teal-deep);}
+
+  /* TRUST STRIP */
+  .trust-strip{background:var(--teal-deep); color:var(--white);}
+  .trust-strip .wrap{display:flex; justify-content:space-around; flex-wrap:wrap; gap:20px; padding:20px 28px; font-size:13.5px; font-weight:500;}
+
+  /* SECTIONS */
+  section{padding:64px 0;}
+  .section-eyebrow{font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--coral); margin-bottom:10px;}
+  .section-head h2{font-family:var(--serif); font-size:30px; font-weight:600; color:var(--teal-deep); margin-bottom:14px;}
+  .section-head p{color:var(--ink-dim); max-width:58ch; margin-bottom:38px;}
+
+  /* SERVICES */
+  .services{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .service-card{background:var(--white); border:1px solid var(--border); border-radius:12px; padding:26px;}
+  .service-icon{width:44px; height:44px; border-radius:10px; background:var(--sage); display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px;}
+  .service-card h3{font-size:17px; margin-bottom:8px; color:var(--ink);}
+  .service-card p{font-size:14px; color:var(--ink-dim);}
+
+  /* DOCTOR */
+  .doctor-grid{display:grid; grid-template-columns:0.8fr 1.2fr; gap:40px; align-items:center; background:var(--white); border:1px solid var(--border); border-radius:16px; padding:36px;}
+  .doctor-photo{background:var(--sage); border-radius:12px; aspect-ratio:1; display:flex; align-items:center; justify-content:center; font-size:48px;}
+  .doctor-info h3{font-family:var(--serif); font-size:22px; color:var(--teal-deep); margin-bottom:4px;}
+  .doctor-info .role{color:var(--coral); font-weight:600; font-size:13.5px; margin-bottom:14px;}
+  .doctor-info p{color:var(--ink-dim); font-size:14.5px;}
+
+  /* HOURS + LOCATION */
+  .info-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .info-card{background:var(--white); border:1px solid var(--border); border-radius:12px; padding:26px;}
+  .info-card h3{font-size:16px; margin-bottom:14px; color:var(--teal-deep);}
+  .hours-row{display:flex; justify-content:space-between; font-size:14px; color:var(--ink-dim); padding:6px 0; border-bottom:1px dashed var(--border);}
+  .hours-row:last-child{border-bottom:none;}
+  .hours-row span:first-child{color:var(--ink); font-weight:500;}
+
+  /* BOOKING CTA */
+  .booking-cta{background:var(--teal); border-radius:16px; padding:44px; text-align:center; color:var(--white);}
+  .booking-cta h2{font-family:var(--serif); font-size:28px; margin-bottom:12px;}
+  .booking-cta p{opacity:0.9; margin-bottom:24px; max-width:50ch; margin-left:auto; margin-right:auto;}
+  .booking-cta .btn-primary{background:var(--white); color:var(--teal-deep);}
+  .booking-cta .btn-primary:hover{background:var(--sage);}
+
+  footer{background:var(--teal-deep); color:rgba(255,255,255,0.75); padding:36px 0; font-size:13px; text-align:center;}
+  footer .credit{margin-top:8px; opacity:0.6;}
+  footer a{color:rgba(255,255,255,0.9);}
+
+  @media (max-width:800px){
+    .hero-grid{grid-template-columns:1fr;}
+    .services{grid-template-columns:1fr;}
+    .doctor-grid{grid-template-columns:1fr; text-align:center;}
+    .doctor-photo{max-width:180px; margin:0 auto;}
+    .info-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Ninefold Clinic</div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#doctor">About</a></li>
+      <li><a href="#visit">Visit Us</a></li>
+      <li><a href="#book" class="nav-cta">Book Appointment</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Family &amp; General Medicine</div>
+      <h1>Care that actually has time for you</h1>
+      <p>Same-week appointments, a doctor who explains things clearly, and a clinic that doesn't make you wait two hours for a ten-minute visit.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#book">Book an Appointment</a>
+        <a class="btn btn-outline" href="#services">View Services</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-badge">⭐ 4.8/5 from 200+ patients</div>
+    </div>
+  </div>
+</header>
+
+<div class="trust-strip">
+  <div class="wrap">
+    <span>🕐 Open 7 days a week</span>
+    <span>📍 Salt Lake, Kolkata</span>
+    <span>💳 Cashless insurance accepted</span>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Services</div>
+      <h2>What we treat</h2>
+      <p>General consultations to specialist referrals — most concerns handled in a single visit.</p>
+    </div>
+    <div class="services">
+      <div class="service-card">
+        <div class="service-icon">🩺</div>
+        <h3>General Consultation</h3>
+        <p>Everyday illness, checkups, and ongoing condition management.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💉</div>
+        <h3>Vaccinations</h3>
+        <p>Routine and travel vaccinations for children and adults.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧪</div>
+        <h3>Diagnostic Tests</h3>
+        <p>On-site basic lab work, with results typically same-day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="doctor">
+  <div class="wrap">
+    <div class="doctor-grid">
+      <div class="doctor-photo">🧑‍⚕️</div>
+      <div class="doctor-info">
+        <h3>Dr. [Name]</h3>
+        <div class="role">MBBS, MD — General Medicine</div>
+        <p>Over a decade in family practice, with a focus on actually listening before prescribing. Available for consultations six days a week, with same-week booking for most appointment types.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Visit Us</div>
+      <h2>Hours &amp; location</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Clinic Hours</h3>
+        <div class="hours-row"><span>Mon – Fri</span><span>9:00 AM – 7:00 PM</span></div>
+        <div class="hours-row"><span>Saturday</span><span>9:00 AM – 5:00 PM</span></div>
+        <div class="hours-row"><span>Sunday</span><span>10:00 AM – 1:00 PM</span></div>
+      </div>
+      <div class="info-card">
+        <h3>Location &amp; Contact</h3>
+        <div class="hours-row"><span>Address</span><span>Salt Lake, Kolkata</span></div>
+        <div class="hours-row"><span>Phone</span><span>+91 XXXXX XXXXX</span></div>
+        <div class="hours-row"><span>Email</span><span>hello@wellspring.clinic</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="book">
+  <div class="wrap">
+    <div class="booking-cta">
+      <h2>Ready to book your visit?</h2>
+      <p>Appointments open every day — pick a time that works and we'll confirm within a few hours.</p>
+      <a class="btn btn-primary" href="#">Book Appointment</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>Ninefold Clinic — Salt Lake, Kolkata</div>
+    <div class="credit">Demo site built by <a href="#">Ninefold</a> — this is a sample, not a real clinic.</div>
+  </div>
+</footer>
+
+</body>
+</html>
